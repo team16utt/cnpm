@@ -126,8 +126,12 @@ Version      : 1.0
   if ($(".datatable").length > 0) {
     $(".datatable").DataTable({
       // "bFilter": false,
+      // lengthMenu: [
+      //   [10, 25, 50, -1],
+      //   [10, 25, 50, "All"],
+      // ],
       dom: "Bfrtip",
-      buttons: ["excel"],
+      buttons: ["csv", "excel", "pdf", "print"],
     });
   }
 
