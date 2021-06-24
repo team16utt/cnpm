@@ -120,4 +120,16 @@ class Teacher extends BaseController
             }
         }
     }
+    public function teacherDetail()
+    {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $teacherModel = new GiangVienModel();
+            $teacher = $teacherModel->getById($id);
+            $data['teacher'] = $teacher;
+            $data['title'] = $teacher['ho_ten'];
+
+            return view('teacherDetail', $data);
+        }
+    }
 }

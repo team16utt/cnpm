@@ -39,6 +39,11 @@
                             <p class="account-subtitle">Đăng nhập</p>
 
                             <!-- Form -->
+                            <?php if (isset($errorMessage)) : ?>
+                                <div class="alert alert-danger">
+                                    <?= $errorMessage ?>
+                                </div>
+                            <?php endif; ?>
                             <form method="POST">
                                 <div class="form-group">
                                     <input class="form-control" type="text" name="username" placeholder="Tài khoản">

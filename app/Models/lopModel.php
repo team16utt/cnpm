@@ -24,4 +24,8 @@ class LopModel extends Model
     {
         return $this->find($id);
     }
+    public function getByGV($id)
+    {
+        return $this->where('gvcn_id', $id)->findAll();
+    }
 }

@@ -12,7 +12,7 @@
             </ul>
         </div>
         <div class="col-auto text-right float-right ml-auto">
-            <a href="#" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
+
             <a href="<?= base_url() ?>/student/editstudent" class="btn btn-primary"><i class="fas fa-plus"></i></a>
         </div>
     </div>
@@ -46,8 +46,10 @@
                                         <td><?= $item['ten_lop'] ?></td>
                                         <td>
                                             <h2 class="table-avatar">
-                                                <a href="<?= base_url() ?>/studentDetail/<?= $item['mgv'] ?>" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="<?= base_url() . $item['anh_bia'] ?>" alt="User Image"></a>
-                                                <a href="<?= base_url() ?>/studentDetail/<?= $item['mgv'] ?>"><?= $item['ho_ten'] ?></a>
+                                                <a href="<?= base_url() ?>/student/studentDetail?id=<?= $item['id'] ?>" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="<?php if ($item['anh_bia'] == null || $item['anh_bia'] == '/public/img/avatar/') echo base_url() . '/public/img/avatar/user.png';
+                                                                                                                                                                                                    else echo base_url() . $item['anh_bia'];
+                                                                                                                                                                                                    ?>" alt="User Image"></a>
+                                                <a href="<?= base_url() ?>/student/studentDetail?id=<?= $item['id'] ?>"><?= $item['ho_ten'] ?></a>
                                             </h2>
                                         </td>
                                         <td><?= $item['gioi_tinh'] ?></td>

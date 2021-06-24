@@ -24,13 +24,14 @@ class Login extends BaseController
             ];
 
             $user = $userModel->where($data)->first();
-            var_dump($user);
             if ($user) {
                 // $sendEmail = new SendEmail();
                 // $sendEmail->send($user['email']);
                 $_SESSION['user'] = $user;
 
                 return redirect()->to('home');
+            } else {
+                $data['errorMessage'] = 'Tên tài khoản hoặc mật khẩu không chính xác';
             }
         }
         return view('login', $data);

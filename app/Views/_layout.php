@@ -73,17 +73,23 @@
                 <!-- /Notifications -->
 
                 <!-- User Menu -->
+                <?php session_start() ?>
+                <?php $user = $_SESSION['user'] ?>
                 <li class="nav-item dropdown has-arrow">
                     <a href="<?= base_url() ?>/#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                        <span class="user-img"><img class="rounded-circle" src="<?= base_url() ?>/assets/img/profiles/avatar-01.jpg" width="31" alt="Ryan Taylor"></span>
+                        <span class="user-img"><img style="object-fit: cover;" class="rounded-circle" src="<?php if ($user['anh_bia'] == null || $user['anh_bia'] == '/public/img/avatar/') echo base_url() . '/public/img/avatar/user.png';
+                                                                                                            else echo base_url() . $user['anh_bia'];
+                                                                                                            ?>" width="31" alt="Ryan Taylor"></span>
                     </a>
                     <div class="dropdown-menu">
                         <div class="user-header">
                             <div class="avatar avatar-sm">
-                                <img src="<?= base_url() ?>/assets/img/profiles/avatar-01.jpg" alt="User Image" class="avatar-img rounded-circle">
+                                <img src="<?php if ($user['anh_bia'] == null || $user['anh_bia'] == '/public/img/avatar/') echo base_url() . '/public/img/avatar/user.png';
+                                            else echo base_url() . $user['anh_bia'];
+                                            ?>" alt="User Image" class="avatar-img rounded-circle">
                             </div>
                             <div class="user-text">
-                                <h6>Test</h6>
+                                <h6><?= $user['ho_ten'] ?></h6>
                                 <p class="text-muted mb-0">Quản trị viên</p>
                             </div>
                         </div>
@@ -118,13 +124,36 @@
                                 <li><a href="<?= base_url() ?>/student/editStudent">Thêm mới sinh viên</a></li>
                             </ul>
                         </li>
-                        <li class="submenu">
-                            <a href="<?= base_url() ?>/#"><i class="fas fa-chalkboard-teacher"></i> <span> Quản lý giảng viên</span> <span class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="<?= base_url() ?>/teacher/">Danh sách giảng viên</a></li>
-                                <li><a href="<?= base_url() ?>/teacher/editTeacher">Thêm mới giảng viên</a></li>
-                            </ul>
-                        </li>
+                        <?php if ($user['chuc_vu'] == 0) : ?>
+                            <li class="submenu">
+                                <a href="<?= base_url() ?>/#"><i class="fas fa-chalkboard-teacher"></i> <span> Quản lý giảng viên</span> <span class="menu-arrow"></span></a>
+                                <ul>
+                                    <li><a href="<?= base_url() ?>/teacher/">Danh sách giảng viên</a></li>
+                                    <li><a href="<?= base_url() ?>/teacher/editTeacher">Thêm mới giảng viên</a></li>
+                                </ul>
+                            </li>
+                            <li class="submenu">
+                                <a href="<?= base_url() ?>/#"><i class="fas fa-chalkboard-teacher"></i> <span> Quản lý lớp</span> <span class="menu-arrow"></span></a>
+                                <ul>
+                                    <li><a href="<?= base_url() ?>/classes/">Danh sách lớp</a></li>
+                                    <li><a href="<?= base_url() ?>/classes/editClass">Thêm mới lớp</a></li>
+                                </ul>
+                            </li>
+                            <li class="submenu">
+                                <a href="<?= base_url() ?>/#"><i class="fas fa-chalkboard-teacher"></i> <span> Quản lý khoa</span> <span class="menu-arrow"></span></a>
+                                <ul>
+                                    <li><a href="<?= base_url() ?>/Department/">Danh sách khoa</a></li>
+                                    <li><a href="<?= base_url() ?>/Department/editDepartment">Thêm mới khoa</a></li>
+                                </ul>
+                            </li>
+                            <li class="submenu">
+                                <a href="<?= base_url() ?>/#"><i class="fas fa-chalkboard-teacher"></i> <span> Quản lý ngành</span> <span class="menu-arrow"></span></a>
+                                <ul>
+                                    <li><a href="<?= base_url() ?>/major/">Danh sách ngành</a></li>
+                                    <li><a href="<?= base_url() ?>/major/editmajor">Thêm mới ngành</a></li>
+                                </ul>
+                            </li>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
@@ -171,7 +200,6 @@
 
     <!-- Custom JS -->
     <script src="<?= base_url() ?>/assets/js/script.js"></script>
-
 </body>
 
 </html>

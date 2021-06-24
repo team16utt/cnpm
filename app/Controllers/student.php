@@ -12,12 +12,29 @@ class Student extends BaseController
         $studentModel = new SinhVienModel();
         $classModel = new LopModel();
         $data['title'] = "Danh sách sinh viên";
-        $students = $studentModel->getAll();
-        foreach ($students as $key => $value) {
-            $ten_lop = $classModel->getById($value['ma_lop'])['ten_lop'];
-            $students[$key]["ten_lop"] = $ten_lop;
+        session_start();
+        $user = $_SESSION['user'];
+        if ($user['chuc_vu'] == 0) {
+            $studentByTeacher = $studentModel->getAll();
+            foreach ($studentByTeacher as $key => $value) {
+                $ten_lop = $classModel->getById($value['ma_lop'])['ten_lop'];
+                $studentByTeacher[$key]["ten_lop"] = $ten_lop;
+            }
+        } else {
+            $classes = $classModel->getByGV($user['id']);
+            $studentByTeacher = [];
+            foreach ($classes as $class) {
+                $students = $studentModel->getByMaLop($class['id']);
+                foreach ($students as $student) {
+                    array_push($studentByTeacher, $student);
+                }
+            }
+            foreach ($studentByTeacher as $key => $value) {
+                $ten_lop = $classModel->getById($value['ma_lop'])['ten_lop'];
+                $studentByTeacher[$key]["ten_lop"] = $ten_lop;
+            }
         }
-        $data['students'] = $students;
+        $data['students'] = $studentByTeacher;
         return view('students', $data);
     }
     public function editStudent()
@@ -73,7 +90,12 @@ class Student extends BaseController
                     'email' => $email,
                     'id!=' => $sid
                 ];
+                $conditionMSV = [
+                    'msv' => $msv,
+                    'id!=' => $sid
+                ];
                 $checkEmail = $studentModel->where($conditionEmail)->countAllResults();
+                $checkMSV = $studentModel->where($conditionMSV)->countAllResults();
             }
             if ($checkMSV || $checkEmail) {
                 $data['message'] = 'fail';
@@ -106,6 +128,19 @@ class Student extends BaseController
             if ($old > 0) {
                 return redirect()->to(base_url() . '/student');
             }
+        }
+    }
+    public function studentDetail()
+    {
+        if (isset($_GET['id'])) {
+
+            $id = $_GET['id'];
+            $studentModel = new SinhVienModel();
+            $student = $studentModel->getById($id);
+            $data['title'] = $student['ho_ten'];
+
+            $data['student'] = $student;
+            return view('studentDetail', $data);
         }
     }
 }

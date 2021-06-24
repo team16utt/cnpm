@@ -24,4 +24,8 @@ class SinhVienModel extends Model
     {
         return $this->find($id);
     }
+    public function getByMaLop($id)
+    {
+        return $this->where('ma_lop', $id)->findAll();
+    }
 }

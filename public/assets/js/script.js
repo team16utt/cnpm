@@ -126,6 +126,8 @@ Version      : 1.0
   if ($(".datatable").length > 0) {
     $(".datatable").DataTable({
       // "bFilter": false,
+      dom: "Bfrtip",
+      buttons: ["excel"],
     });
   }
 
