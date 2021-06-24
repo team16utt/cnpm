@@ -41,10 +41,10 @@
                             <!-- Form -->
                             <form method="POST">
                                 <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="Tài khoản">
+                                    <input class="form-control" type="text" name="username" placeholder="Tài khoản">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="Mật khẩu">
+                                    <input class="form-control" type="text" name="password" placeholder="Mật khẩu">
                                 </div>
                                 <div class="form-group">
                                     <button class="btn btn-primary btn-block" type="submit">Đăng nhập</button>

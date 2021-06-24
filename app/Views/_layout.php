@@ -19,6 +19,8 @@
     <!-- Fontawesome CSS -->
     <link rel="stylesheet" href="<?= base_url() ?>/assets/plugins/fontawesome/css/fontawesome.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>/assets/plugins/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/plugins/datatables/datatables.min.css
+">
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="<?= base_url() ?>/assets/css/style.css">
@@ -87,7 +89,7 @@
                         </div>
                         <!-- <a class="dropdown-item" href="<?= base_url() ?>/profile.html">My Profile</a> -->
                         <!-- <a class="dropdown-item" href="<?= base_url() ?>/inbox.html">Inbox</a> -->
-                        <a class="dropdown-item" href="<?= base_url() ?>/logout">Đăng xuất</a>
+                        <a class="dropdown-item" href="<?= base_url() ?>/login/logout">Đăng xuất</a>
                     </div>
                 </li>
                 <!-- /User Menu -->
@@ -164,6 +166,8 @@
     <!-- Chart JS -->
     <script src="<?= base_url() ?>/assets/plugins/apexchart/apexcharts.min.js"></script>
     <script src="<?= base_url() ?>/assets/plugins/apexchart/chart-data.js"></script>
+
+    <script src="<?= base_url() ?>/assets/plugins/datatables/datatables.min.js"></script>
 
     <!-- Custom JS -->
     <script src="<?= base_url() ?>/assets/js/script.js"></script>

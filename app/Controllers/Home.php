@@ -8,10 +8,11 @@ class Home extends BaseController
 {
 	public function index()
 	{
-		// $userModel = new UserModel();
-		// var_dump($userModel->getAllUser());
 		$data['title'] = "Trang chủ";
-		$data['page'] = "home";
-		return view('dashboard', $data);
+		session_start();
+		if ($_SESSION['user']) {
+			return view('dashboard', $data);
+		}
+		return redirect()->to(base_url() . '/login');
 	}
 }
